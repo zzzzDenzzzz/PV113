@@ -11,14 +11,14 @@ class User
 
     public function createUser($username, $email, $password)
     {
-        $stmt = $this->pdo->prepare("INSERT INTO Users (user_name, email, password) VALUES(?, ?, ?)");
+        $stmt = $this->pdo->prepare("INSERT INTO Users (username, email, password) VALUES(?, ?, ?)");
         $stmt->execute([$username, $email, password_hash($password, PASSWORD_BCRYPT)]);
         return $this->pdo->lastInsertId();
     }
 
     public function updateUser($id, $username, $email)
     {
-        $stmt = $this->pdo->prepare("UPDATE Users SET user_name = ?, email = ? WHERE id = ?");
+        $stmt = $this->pdo->prepare("UPDATE Users SET username = ?, email = ? WHERE id = ?");
         $stmt->execute([$username, $email, $id]);
     }
 

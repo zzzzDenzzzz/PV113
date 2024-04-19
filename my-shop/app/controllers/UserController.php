@@ -1,6 +1,6 @@
 <?php
 
-require "../models/User.php";
+require __DIR__ . "/../models/User.php";
 
 class UserController
 {
@@ -19,7 +19,8 @@ class UserController
         }
 
         $this->userModel->createUser($username, $email, $password);
-        echo "Регистрация успешна";
+        // echo "Регистрация успешна";
+        header("location: ../public/login.html");
     }
 
     public function login($email, $password)

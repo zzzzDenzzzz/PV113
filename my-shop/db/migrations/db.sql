@@ -1,7 +1,7 @@
 -- Таблица пользователей
 CREATE TABLE Users (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    user_name VARCHAR(255) NOT NULL,
+    username VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
     create_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
