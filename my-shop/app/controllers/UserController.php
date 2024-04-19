@@ -28,7 +28,8 @@ class UserController
         $user = $this->userModel->getUserByEmail($email);
         if ($user && password_verify($password, $user["password"])) {
             $_SESSION["user_id"] = $user["id"];
-            echo "Вход успешен!";
+            // echo "Вход успешен!";
+            header("location: ../app/views/profile.php");
         } else {
             echo "Неверный email или пароль";
         }
