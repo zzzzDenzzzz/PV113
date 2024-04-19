@@ -9,7 +9,7 @@ class User
         $this->pdo = $pdo;
     }
 
-    public function createUser(string $username, string $email, string $password)
+    public function createUser($username, $email, $password)
     {
         $stmt = $this->pdo->prepare("INSERT INTO Users (user_name, email, password) VALUES(?, ?, ?)");
         $stmt->execute([$username, $email, password_hash($password, PASSWORD_BCRYPT)]);
