@@ -14,13 +14,12 @@ class UserController
     public function register($username, $email, $password)
     {
         if ($this->userModel->getUserByEmail($email)) {
-            echo "Пользователь с таким email уже существует";
+            $this->function_alert("Пользователь с таким email уже существует", "../public/login.html");
             return;
         }
 
         $this->userModel->createUser($username, $email, $password);
-        // echo "Регистрация успешна";
-        header("location: ../public/login.html");
+        $this->function_alert("Регистрация успешна", "../public/login.html");
     }
 
     public function login($email, $password)
@@ -28,10 +27,9 @@ class UserController
         $user = $this->userModel->getUserByEmail($email);
         if ($user && password_verify($password, $user["password"])) {
             $_SESSION["user_id"] = $user["id"];
-            // echo "Вход успешен!";
-            header("location: ../app/views/profile.php");
+            $this->function_alert("Вход успешен!", "../app/views/profile.php");
         } else {
-            echo "Неверный email или пароль";
+            $this->function_alert("Неверный email или пароль", "../public/login.html");
         }
     }
 
@@ -39,7 +37,7 @@ class UserController
     {
         session_unset();
         session_destroy();
-        echo "Вы вышли из аккаунта";
+        $this->function_alert("Вы вышли из аккаунта", "../public/login.html");
     }
 
     public function profile($user_id)
@@ -55,6 +53,11 @@ class UserController
     public function updateProfile($user_id, $username, $email)
     {
         $this->userModel->updateUser($user_id, $username, $email);
-        echo "Профиль успешно обновлён";
+        $this->function_alert("Профиль успешно обновлён", "../app/views/profile.php");
+    }
+
+    private function function_alert($message, $path)
+    {
+        echo "<script>alert('$message');window.location.href='$path';</script>";
     }
 }

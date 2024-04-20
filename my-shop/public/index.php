@@ -37,7 +37,7 @@ switch ($controller) {
                 $userController->updateProfile($user_id, $username, $email);
                 break;
             default:
-                echo "Сначала выполните авторизацию";
+                header("location: ../public/login.html");
                 break;
         }
         break;
