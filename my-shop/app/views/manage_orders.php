@@ -34,7 +34,6 @@ $orders = $adminController->getAllOrders();
                 <th>Пользователь</th>
                 <th>Дата создания</th>
                 <th>Статус</th>
-                <th>Id Заказа</th>
             </tr>
         </thead>
         <tbody>
