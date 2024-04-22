@@ -19,6 +19,7 @@ if ($user) {
     echo "<h1>Профиль пользователя</h1>";
     echo "<p>Имя пользователя: " . $user["username"] . "</p>";
     echo "<p>Email: " . $user["email"] . "</p>";
+    echo "<a href='orders.php'>Мои заказы</a><br>";
     echo "<a href='/my-shop/public/index.php?controller=user&action=logout'>Выйти</a>";
 
     echo "<h1>Обновление профиля</h1>";

@@ -14,12 +14,12 @@ class UserController
     public function register($username, $email, $password)
     {
         if ($this->userModel->getUserByEmail($email)) {
-            $this->function_alert("Пользователь с таким email уже существует", "../public/login.html");
+            $this->function_alert("Пользователь с таким email уже существует", "../public/login.php");
             return;
         }
 
         $this->userModel->createUser($username, $email, $password);
-        $this->function_alert("Регистрация успешна", "../public/login.html");
+        $this->function_alert("Регистрация успешна", "../public/login.php");
     }
 
     public function login($email, $password)
@@ -29,7 +29,7 @@ class UserController
             $_SESSION["user_id"] = $user["id"];
             $this->function_alert("Вход успешен!", "../app/views/profile.php");
         } else {
-            $this->function_alert("Неверный email или пароль", "../public/login.html");
+            $this->function_alert("Неверный email или пароль", "../public/login.php");
         }
     }
 
@@ -37,7 +37,7 @@ class UserController
     {
         session_unset();
         session_destroy();
-        $this->function_alert("Вы вышли из аккаунта", "../public/login.html");
+        $this->function_alert("Вы вышли из аккаунта", "../public/login.php");
     }
 
     public function profile($user_id)

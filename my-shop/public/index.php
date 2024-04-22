@@ -37,9 +37,11 @@ switch ($controller) {
                 $userController->updateProfile($user_id, $username, $email);
                 break;
             default:
-                header("location: ../public/login.html");
+                header("Location: login.php");
                 break;
         }
+        break;
+    case "admin":
         break;
     default:
         echo "Контроллер не найден";

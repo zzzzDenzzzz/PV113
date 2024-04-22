@@ -1,3 +1,13 @@
+<?php
+session_start();
+
+$user_id = $_SESSION["user_id"] ?? null;
+if ($user_id) {
+    header("Location: ../app/views/profile.php");
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="ru">
 
@@ -8,7 +18,7 @@
     <link rel="stylesheet" href="../public/assets/style.css">
     <link rel="stylesheet" href="../public/assets/bootstrap-5.3.3/css/bootstrap.min.css">
     <script defer src="../public/assets/bootstrap-5.3.3/js/bootstrap.bundle.min.js"></script>
-    <title>Регистрация</title>
+    <title>Авторизация</title>
 </head>
 
 <body>
@@ -19,13 +29,8 @@
                     <div class="col-12 col-md-9 col-lg-7 col-xl-6">
                         <div class="card" style="border-radius: 15px;">
                             <div class="card-body p-5">
-                                <h2 class="text-uppercase text-center mb-5">Регистрация</h2>
-                                <form action="./index.php?controller=user&action=register" method="post">
-                                    <div data-mdb-input-init class="form-outline mb-4">
-                                        <label class="form-label" for="username">Имя пользователя</label>
-                                        <input type="username" id="username" name="username"
-                                            class="form-control form-control-lg" required>
-                                    </div>
+                                <h2 class="text-uppercase text-center mb-5">Вход в личный кабинет</h2>
+                                <form action="./index.php?controller=user&action=login" method="post">
                                     <div data-mdb-input-init class="form-outline mb-4">
                                         <label class="form-label" for="email">Email</label>
                                         <input type="email" id="email" name="email" class="form-control form-control-lg"
@@ -39,10 +44,10 @@
                                     <div class="d-flex justify-content-center">
                                         <input type="submit" data-mdb-button-init data-mdb-ripple-init
                                             class="btn btn-success btn-block btn-lg gradient-custom-4 text-body"
-                                            value="Зарегистрироваться">
+                                            value="Войти">
                                     </div>
-                                    <p class="text-center text-muted mt-5 mb-0">Уже есть аккаунт? <a href="login.php"
-                                            class="fw-bold text-body"><u>Войти</u></a>
+                                    <p class="text-center text-muted mt-5 mb-0">Ёще нет аккаунта? <a
+                                            href="register.html" class="fw-bold text-body"><u>Зарегистрироваться</u></a>
                                     </p>
                                 </form>
                             </div>
