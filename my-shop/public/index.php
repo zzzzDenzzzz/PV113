@@ -42,7 +42,40 @@ switch ($controller) {
         }
         break;
     case "admin":
+        require_once("../app/controllers/AdminController.php");
+        $adminController = new AdminController($pdo);
+        switch ($action) {
+            case "login":
+                $email = $_POST["email"] ?? "";
+                $password = $_POST["password"] ?? "";
+                $adminController->login($email, $password);
+                break;
+            case "logout":
+                $adminController->logout();
+                break;
+            case "getAllOrders":
+                $adminController->getAllOrders();
+                break;
+            case "changeOrderStatus":
+                $order_id = $_POST["order_id"] ?? "";
+                $status = $_POST["status"] ?? "";
+                $adminController->changeOrderStatus($order_id, $status);
+                break;
+            default:
+                // header("Location: ../admin/login.php");
+                break;
+        }
         break;
+    case "order":
+        require_once("../app/controllers/OrderController.php");
+        $orderController = new OrderController($pdo);
+        switch ($action) {
+            case "changeOrderStatus":
+                $order_id = $_POST["order_id"] ?? "";
+                $status = $_POST["status"] ?? "";
+                $orderController->changeOrderStatus($order_id, $status);
+                break;
+        }
     default:
         echo "Контроллер не найден";
         break;

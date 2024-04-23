@@ -37,7 +37,7 @@ class AdminController
             exit;
         }
         $stmt = $this->pdo->query("SELECT * FROM Orders");
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function changeOrderStatus($order_id, $status) {
@@ -47,5 +47,6 @@ class AdminController
         }
         $stmt = $this->pdo->prepare("UPDATE Orders SET status = ? WHERE id = ?");
         $stmt->execute([$status, $order_id]);
+        header("Location: ../app/views/manage_orders.php");
     }
 }
