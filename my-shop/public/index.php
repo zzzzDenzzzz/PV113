@@ -70,11 +70,21 @@ switch ($controller) {
         require_once("../app/controllers/OrderController.php");
         $orderController = new OrderController($pdo);
         switch ($action) {
+            case "getUserOrders":
+                $user_id = $_SESSION["user_id"] ?? "";
+                $orderController->getUserOrders($user_id);
+                break;
+            case "getOrderItems":
+                $order_id = $_POST["order_id"] ?? "";
+                $orderController->getOrderItems($order_id);
+                break;
             case "changeOrderStatus":
                 $order_id = $_POST["order_id"] ?? "";
                 $status = $_POST["status"] ?? "";
                 $orderController->changeOrderStatus($order_id, $status);
                 break;
+            default:
+            break;
         }
     default:
         echo "Контроллер не найден";
