@@ -52,12 +52,14 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <?php endforeach; ?>
     </div>
     <div id="pagination">
-        <?php for ($i = 1; $i <= ceil($total_items/$items_per_page); $i++): ?>
+        <?php for ($i = 1; $i <= ceil($total_items / $items_per_page); $i++): ?>
             <a href="#" class="page-link" data-page="<?php echo $i; ?>"><?php echo $i; ?></a>
         <?php endfor; ?>
     </div>
     <div id="cart">
-            Корзина(<span id="cart-count">0</span>)
+        Корзина(<span id="cart-count">0</span>)<br>
+        <a href="cart.php">Перейти в корзину</a><br>
+        <button id="clear-cart">Очистить корзину</button>
     </div>
     <script src="script.js"></script>
 </body>
