@@ -1,5 +1,6 @@
 $(document).ready(function () {
   loadCart();
+
   $(".page-link").click(function (e) {
     e.preventDefault();
     let page = $(this).data("page");
@@ -23,11 +24,13 @@ $(document).ready(function () {
   });
 
   function addToCart(productId) {
-    let productItem = $(`button[data-product-id='${productId}']`).closest(
+    let productItem = $(`button[data-product-id="${productId}"]`).closest(
       ".product-item"
     );
     let productName = productItem.find(".product-name").text();
-    let productPrice = parseFloat(productItem.find(".product-price").text());
+    let productPrice = parseFloat(
+      productItem.find(".product-price").text().replace("$", "")
+    );
 
     let cart = JSON.parse(localStorage.getItem("cart")) || {};
     let item = cart[productId];
@@ -52,7 +55,7 @@ $(document).ready(function () {
     );
     $("#cart-count").text(totalCount);
 
-    alert("товар добавлен в корзину");
+    alert("Товар добавлен в корзину");
   }
 
   function loadCart() {
@@ -67,6 +70,6 @@ $(document).ready(function () {
   $("#clear-cart").click(function () {
     localStorage.removeItem("cart");
     $("#cart-count").text("0");
-    alert("корзина очищена!");
+    alert("Корзина очищена!");
   });
 });
