@@ -36,3 +36,10 @@ CREATE TABLE Admins (
     email VARCHAR(255) NOT NULL,
     password VARCHAR(255) NOT NULL
 );
+
+CREATE TABLE `my-shop`.`Products` (
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    price DECIMAL NOT NULL,
+    img VARCHAR(255) NOT NULL
+);
